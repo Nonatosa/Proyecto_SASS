@@ -63,10 +63,13 @@ function crearGaleria() {
     const galeria = document.querySelector('.galeria-imagenes');
 
     for (let i = 1; i <= imgTotales; i++) {
-        const img = document.createElement('IMG');
-
-        img.src = `src/img/gallery/full/${i}.jpg`;
-        img.alt = `Imagen de galería: ${i}`;
+        const img = document.createElement('PICTURE');
+        
+        img.innerHTML = `
+        <source srcset="./build/img/gallery/thumb/${i}.avif" type="image/avif">
+        <source srcset="./build/img/gallery/thumb/${i}.webp" type="image/webp">
+        <img loading="lazy" width="200" height="300" src="./build/img/gallery/thumb/${i}.jpg" alt="imagen galeria">
+        `;
 
         // Event handler
         img.onclick = function(){
